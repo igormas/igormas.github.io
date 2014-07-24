@@ -5,7 +5,7 @@
     var selectDrtvOption = [
         function(){
             var drtvObject = {
-                templateUrl: '/views/selectDrtv/selectOptionView.html',
+                templateUrl: 'views/selectDrtv/selectOptionView.html',
                 require: ['^selectDrtv','^ngModel'],
                 link: function(scope,element,attrs,ctrls){
                     var selectCtrl = ctrls[0];
