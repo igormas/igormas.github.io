@@ -15,7 +15,7 @@
         function ($parse){
             var directiveObject = {
                 require: ['selectDrtv','ngModel'],
-                templateUrl: '/views/selectDrtv/selectView.html',
+                templateUrl: 'views/selectDrtv/selectView.html',
                 scope: {
                     options: '=',
                     multiSelect: '&',
