@@ -1,0 +1,9 @@
+<div class="select-wrapper" ng-class="{open: settings.showOpt}">
+    <div class="btn btn-default" ng-click="selectDrtv.showOpt()">
+        {{settings.selectTitle}}
+        <span class="caret"></span>
+    </div>
+    <ul class="dropdown-menu" >
+        <li ng-repeat="option in options" select-drtv-option></li>
+    </ul>
+</div>

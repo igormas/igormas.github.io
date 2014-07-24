@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>selectDrtvExample</title>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="css/select-drtv.css" />
+</head>
+<body ng-controller="mainCtrl" style="padding: 20px;">
+    <div select-drtv
+        ng-model="singleSelect.val"
+        options="options"
+        view-expr="view"
+        settings="singleSelect.settings">
+    </div>
+    <span style="margin-left: 5px;">Selected Option: {{singleSelect.val.view}}</span>
+    <div style="margin: 100px;"></div>
+    <div select-drtv
+        ng-model="multiSelect.val"
+        options="options"
+        view-expr="view"
+        multi-select="true"
+        settings="multiSelect.settings"
+        style="vertical-align: top;">
+    </div>
+    <div style="margin-left: 5px;display: inline-block;padding-top: 7px;">Selected Options: <div style="display: inline-block;vertical-align: top;"><span ng-repeat="selectOption in multiSelect.val" style="display: block">{{selectOption.view}}</span></div></div>
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+
+    <script src="scripts/selectDrtv/core/selectMdl.js"></script>
+    <script src="scripts/selectDrtv/directive/selectDrtv.js"></script>
+    <script src="scripts/selectDrtv/directive/selectOptionDrtv.js"></script>
+
+    <script src="scripts/app/core/app.js"></script>
+</body>
+</html>

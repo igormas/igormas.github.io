@@ -1,0 +1,12 @@
+[select-drtv] {
+  outline: none;
+  position: relative;
+  display: inline-block; }
+  [select-drtv] .select-wrapper {
+    position: relative; }
+    [select-drtv] .select-wrapper li {
+      cursor: pointer; }
+      [select-drtv] .select-wrapper li.selected {
+        background-color: rgba(0, 0, 255, 0.36); }
+        [select-drtv] .select-wrapper li.selected a:hover {
+          background: transparent; }
