@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,9 +15,31 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- app theme -->
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
+    <div class="container-fluid" ng-controller="mainCtrl">
+        <button class="twitter-btn" ng-click="d.twitterLogIn()">
+            <i class="fa fa-twitter"></i>
+            <span>Log in with twitter</span>
+        </button>
+    </div>
+
+    <!--vendors-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
+    <!--vendors-->
+
+    <!--twangular app-->
+    <script src="scripts/core/app.js"></script>
+    <script src="scripts/controller/mainCtrl.js"></script>
+    <script src="scripts/service/dataSourceService.js"></script>
+    <!--twangular app-->
+
+    <!--init application-->
+    <script src="scripts/core/init.js"></script>
+    <!--init application-->
 </body>
 </html>

@@ -28,8 +28,18 @@ module.exports = function(grunt) {
         },
         watch:{
             all:{
-                files:['src/main/scripts/**/*.js','app/scss/**/*.scss'],
+                files:[jsSrc + '/**/*.js','app/scss/**/*.scss'],
                 tasks: ['jshint','sass']
+            }
+        },
+        // Project configuration.
+        connect: {
+            server: {
+                options: {
+                    port: 9001,
+                    base: '',
+                    keepalive: true
+                }
             }
         }
     });
