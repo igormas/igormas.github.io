@@ -20,25 +20,23 @@
     <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
-    <div class="container-fluid" ng-controller="mainCtrl">
-        <button class="twitter-btn" ng-click="d.twitterLogIn()">
-            <i class="fa fa-twitter"></i>
-            <span>Log in with twitter</span>
-        </button>
+    <div class="container-fluid">
+        <div ng-view></div>
     </div>
 
     <!--vendors-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
-    <script src="scripts/vendors/oauth-1.0a.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular-route.min.js"></script>
     <!--vendors-->
 
     <!--twangular app-->
     <script src="scripts/core/app.js"></script>
+    <script src="scripts/controller/loginCtrl.js"></script>
     <script src="scripts/controller/mainCtrl.js"></script>
     <script src="scripts/service/dataSourceService.js"></script>
+    <script src="scripts/directive/searchTweetsDrtv.js"></script>
+    <script src="scripts/directive/historyResultsDrtv.js"></script>
     <!--twangular app-->
 
     <!--init application-->

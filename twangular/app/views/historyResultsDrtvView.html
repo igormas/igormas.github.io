@@ -1,0 +1,10 @@
+<div ng-repeat="result in results">
+    <span>{{result.search}}</span>
+    <i class="fa"
+       ng-class="d.isOpen ? 'fa-minus' : 'fa-plus'"
+       ng-click="d.isOpen = !d.isOpen">
+    </i>
+    <div ng-if="d.isOpen">
+        <span ng-repeat="searchResult in result.results">{{searchResult}}</span>
+    </div>
+</div>

@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         watch:{
             all:{
                 files:[jsSrc + '/**/*.js','app/scss/**/*.scss'],
-                tasks: ['jshint','sass']
+                tasks: ['sass']
             }
         },
         // Project configuration.
@@ -45,5 +45,5 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default',['jshint','bower','copy:dev','copy:css','sass']);
+    grunt.registerTask('default',[]);
 };

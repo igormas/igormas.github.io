@@ -1,2 +1,12 @@
+[search-tweets-drtv] .btn-wrapper {
+  text-align: left; }
+[search-tweets-drtv] button {
+  margin-left: 15px; }
+
+[history-results-drtv] .fa {
+  margin-left: 5px;
+  border: 1px solid #000000;
+  cursor: pointer; }
+
 .twitter-btn .fa-twitter {
   color: #55ACEE; }

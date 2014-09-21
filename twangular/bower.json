@@ -1,0 +1,8 @@
+{
+  "name": "twangular",
+  "version": "0.0.1",
+  "description": "twangular",
+  "dependencies": {
+    "oauth-signature": "~1.2.1"
+  }
+}
