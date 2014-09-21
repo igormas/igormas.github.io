@@ -4,7 +4,9 @@
        ng-class="d.isOpen ? 'fa-minus' : 'fa-plus'"
        ng-click="d.isOpen = !d.isOpen">
     </i>
-    <div ng-if="d.isOpen">
-        <span ng-repeat="searchResult in result.results">{{searchResult}}</span>
-    </div>
+    <ul class="list-group" ng-if="d.isOpen">
+        <li class="list-group-item"
+            ng-repeat="searchResult in result.results">{{searchResult}}
+        </li>
+    </ul>
 </div>
