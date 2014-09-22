@@ -9,8 +9,8 @@
         }
 
         $routeProvider
-            .when('/',new Route('app/views/appView.html','mainCtrl'))
-            .when('/login',new Route('app/views/loginView.html','loginCtrl'))
+            .when('/',new Route('views/appView.html','mainCtrl'))
+            .when('/login',new Route('views/loginView.html','loginCtrl'))
             .otherwise('/');
     });
 })(angular);
