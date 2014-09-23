@@ -54,13 +54,14 @@
                     oauth_version: "1.0"
                 };
                 generateSignature(parameters,httpMethod,url,consumerSecret,OAuthTokenSecret);*/
+/*
 
                 var url = 'https://api.twitter.com/oauth/request_token';
                 var httpMethod = 'POST';
                 var consumerSecret = 'L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg';
                 //var OAuthTokenSecret = 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE';
                 var parameters = {
-                    /*oauth_callback: "http%3A%2F%2Flocalhost%2Fsign-in-with-twitter%2F",*/
+                    oauth_callback: "http%3A%2F%2Flocalhost%2Fsign-in-with-twitter%2F",
                     oauth_consumer_key: "cChZNFj6T5R0TigYB9yd1w",
                     oauth_nonce: 'ea9ec8429b68d6b77cd5600adbbb0456',
                     oauth_signature_method: "HMAC-SHA1",
@@ -69,25 +70,30 @@
                 };
 
                 var singleEncodedStr = generateSignature(parameters,httpMethod,url,consumerSecret);
+*/
+                var currTimeStamp = '' + (new Date()).getTime();
+                var url = 'https://api.twitter.com/oauth/request_token';
+                var httpMethod = 'POST';
+                var consumerSecret = 'L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg';
+                //var OAuthTokenSecret = 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE';
+                var parameters = {
+                    oauth_callback: "http%3A%2F%2Flocalhost%3A9001%2Fapp%2Findex.html%23%2Flogin",
+                    oauth_consumer_key: "v4hsgAnTCDe47oqiiswRn1APOewHPJ9P1zk48aJuWFLXNOWMiL",
+                    oauth_nonce: currTimeStamp,
+                    oauth_signature_method: "HMAC-SHA1",
+                    oauth_timestamp: currTimeStamp,
+                    oauth_version: "1.0"
+                };
+                parameters.oauth_signature = generateSignature(parameters,httpMethod,url,consumerSecret);
 
-/*                var encodedSignature = oauthSignature.generate(httpMethod, url, parameters,consumerSecret);
-                console.log(encodedSignature);
-                var signature = oauthSignature.generate(httpMethod, url, parameters,consumerSecret);
-                console.log(signature);*/
+                var oauthHeader = 'OAuth';
+                for(var prop in parameters){
+                    oauthHeader += ' ' + encodeStr(prop) + '=' + '"' + parameters[prop] + '",';
+                }
+                oauthHeader = oauthHeader.slice(0,oauthHeader.length-1);
+                console.log(oauthHeader);
 
-                /*var headers = {
-                    Authorization: 'OAuth ' +
-                        'oauth_nonce="' + currTimeInSeconds + '", ' +
-                        'oauth_callback="http%3A%2F%2Figormas.github.io%2Ftwangular%2Fapp%2Findex.html", ' +
-                        'oauth_signature_method="HMAC-SHA1", ' +
-                        'oauth_timestamp="' + currTimeInSeconds + '", ' +
-                        'oauth_consumer_key="jdoHhwX1IjmMvZanpSU5TxSyK", ' +
-                        'oauth_signature="' + ncodedSignature + '", ' +
-                        'oauth_version="1.0"',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                };*/
-
-/*                var headers = {
+                var headers = {
                     Authorization: 'OAuth ' +
                         'oauth_nonce="ea9ec8429b68d6b77cd5600adbbb0456", ' +
                         'oauth_callback="http%3A%2F%2Flocalhost%2Fsign-in-with-twitter%2F", ' +
@@ -96,28 +102,25 @@
                         'oauth_consumer_key="cChZNFj6T5R0TigYB9yd1w", ' +
                         'oauth_signature="F1Li3tvehgcraF8DMJ7OyxO4w9Y", ' +
                         'oauth_version="1.0"'
-                 };*/
+                };
 
-/*
-                var data = {
-                    oauth_callback: "//http%3A%2F%2Figormas.github.io%2Ftwangular%2Fapp%2Findex.html",
-                    oauth_consumer_key:"L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg",
-                    oauth_nonce:"ea9ec8429b68d6b77cd5600adbbb0456",
-                    oauth_signature:"F1Li3tvehgcraF8DMJ7OyxO4w9Y%3D",
-                    oauth_signature_method:"HMAC-SHA1",
-                    oauth_timestamp:"1318467427",
-                    oauth_version:"1.0"
-                };*/
-
-/*                var prom = $http({
-                    url:oauthReqTokenUrl,
+                var prom = $http({
+                    url: url,
                     method: 'POST',
                     headers: headers
-
                 });
                 prom.then(function(res){
 
-                });*/
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    headers:{
+                        'Authorization': oauthHeader,
+                        'Accept': '*/*'
+                    }
+                });
             };
 
             self.searchForTweets = function(searchVal){
