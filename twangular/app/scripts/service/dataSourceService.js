@@ -6,41 +6,69 @@
         function ($http) {
             var self = this;
 
-            function encodeParamsTSingleString(params,httpMethod,url){
+            function encodeStr(str){
+                return encodeURIComponent(str).replace('!','%21');
+            }
+
+            function generateSignature(params,httpMethod,url,consumerSecret,OAuthTokenSecret){
                 var paramsArr = [];
                 for(var prop in params){
                     paramsArr.push(prop);
                 }
                 paramsArr.sort();
 
-                var str = '';
+                var encodedParams = '';
                 for(var i in paramsArr){
                     prop = paramsArr[i];
-                    str += encodeURIComponent(prop) + '=';
-                    str += encodeURIComponent(params[prop]);
+                    encodedParams += encodeStr(prop) + '=';
+                    encodedParams += encodeStr(params[prop]);
                     if(i < paramsArr.length - 1){
-                        str += '&';
+                        encodedParams += '&';
                     }
                 }
                 var upperCaseHttpMethod = httpMethod.toUpperCase();
-                var encodedUrl = encodeURIComponent(url);
-                return upperCaseHttpMethod + '&' + encodedUrl + '&' + encodeURIComponent(str);
+                var encodedUrl = encodeStr(url);
+                var baseStr = upperCaseHttpMethod + '&' + encodedUrl + '&' + encodeStr(encodedParams);
+                console.log(baseStr);
+                var signingKey = encodeStr(consumerSecret) + '&' + (OAuthTokenSecret ? encodeStr(OAuthTokenSecret) : '');
+                console.log(signingKey);
+                var hash = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(baseStr,signingKey));
+                console.log(hash);
+                return hash;
             }
 
             self.logInWithTwitter = function(){
-                //key F1Li3tvehgcraF8DMJ7OyxO4w9Y%3D
+/*                //key F1Li3tvehgcraF8DMJ7OyxO4w9Y%3D
+                var url = 'https://api.twitter.com/1/statuses/update.json';
+                var httpMethod = 'POST';
+                var consumerSecret = 'kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw';
+                var OAuthTokenSecret = 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE';
+                var parameters = {
+                    status: 'Hello Ladies + Gentlemen, a signed OAuth request!',
+                    include_entities: "true",
+                    oauth_consumer_key: "xvz1evFS4wEEPTGEFPHBog",
+                    oauth_nonce: 'kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg',
+                    oauth_signature_method: "HMAC-SHA1",
+                    oauth_timestamp: '1318622958',
+                    oauth_token: '370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb',
+                    oauth_version: "1.0"
+                };
+                generateSignature(parameters,httpMethod,url,consumerSecret,OAuthTokenSecret);*/
+
                 var url = 'https://api.twitter.com/oauth/request_token';
                 var httpMethod = 'POST';
                 var consumerSecret = 'L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg';
+                //var OAuthTokenSecret = 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE';
                 var parameters = {
-                    oauth_callback: "http%3A%2F%2Flocalhost%2Fsign-in-with-twitter%2F",
+                    /*oauth_callback: "http%3A%2F%2Flocalhost%2Fsign-in-with-twitter%2F",*/
                     oauth_consumer_key: "cChZNFj6T5R0TigYB9yd1w",
                     oauth_nonce: 'ea9ec8429b68d6b77cd5600adbbb0456',
                     oauth_signature_method: "HMAC-SHA1",
                     oauth_timestamp: '1318467427',
                     oauth_version: "1.0"
                 };
-                var singleEncodedStr = encodeParamsTSingleString(parameters,httpMethod,url);
+
+                var singleEncodedStr = generateSignature(parameters,httpMethod,url,consumerSecret);
 
 /*                var encodedSignature = oauthSignature.generate(httpMethod, url, parameters,consumerSecret);
                 console.log(encodedSignature);
