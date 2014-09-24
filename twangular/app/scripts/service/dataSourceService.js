@@ -38,7 +38,17 @@
             };
 
             self.accessToken = function(){
-                var search = $location.search();
+                var absUrl = $location.absUrl();
+                var indexofQMark = absUrl.indexOf('?');
+                var searchStr = absUrl.slice(indexofQMark+1,absUrl.length-2);
+                var searchArr = searchStr.split('&');
+                var search = {};
+                for(var i in searchArr){
+                    var item = searchArr[i];
+                    var itemArr = item.split('=');
+                    search[itemArr[0]] = item[1];
+                }
+
                 var request_data = {
                     url: 'https://api.twitter.com/oauth/access_token',
                     method: 'POST',
