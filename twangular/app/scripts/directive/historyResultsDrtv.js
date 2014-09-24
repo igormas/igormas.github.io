@@ -4,7 +4,7 @@
     var historyResultsDrtv = [
         function () {
             var drtvObj = {
-                templateUrl: 'app/views/historyResultsDrtvView.html',
+                templateUrl: 'views/historyResultsDrtvView.html',
                 scope: {
                     results: '=historyResultsDrtv'
                 }

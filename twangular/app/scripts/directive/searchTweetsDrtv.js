@@ -5,7 +5,7 @@
         'dataSourceService',
         function (dataSourceService) {
             var drtvObj = {
-                templateUrl: 'app/views/searchTweetsDrtvView.html',
+                templateUrl: 'views/searchTweetsDrtvView.html',
                 scope:{
 
                 },
