@@ -2,8 +2,8 @@
     'use strict';
 
     var mainCtrl = [
-        '$scope',
-        function ($scope) {
+        '$scope','dataSourceService',
+        function ($scope,dataSourceService) {
             $scope.d = {};
 
             $scope.d.historyResults = [{
@@ -20,6 +20,8 @@
                     'Jim Carrey'
                 ]
             }];
+
+            dataSourceService.accessToken();
         }
     ];
     angular.module('twangular').controller('mainCtrl', mainCtrl);
