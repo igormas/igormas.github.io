@@ -21,7 +21,7 @@
             self.getHistory = function(){
               var historyStr = localStorage.getItem(self.storageId);
               try{
-                  return JSON.parse(historyStr);
+                  return JSON.parse(historyStr) || [];
               }
               catch(err){
                   return [];
