@@ -72,9 +72,9 @@
             self.searchForTweets = function(query){
                 var request_data = {
                     url: 'https://api.twitter.com/1.1/search/tweets.json',
-                    method: 'POST',
+                    method: 'GET',
                     data: {
-                        oauth_token: accessTokens.oauth_token
+                        oauth_token: '2822146021-ogmraYNgE8s6peUZ98jEhlZj6zSZbuI3UeqYzqU'
                     }
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
