@@ -71,17 +71,19 @@
 
             self.searchForTweets = function(query){
                 var request_data = {
-                    url: 'https://api.twitter.com/1.1/search/tweets.json?count=20&q=trtr',
+                    url: 'https://api.twitter.com/1.1/search/tweets.json',
                     method: 'GET',
                     data: {
-                        oauth_token: accessTokens.oauth_token
+                        oauth_token: accessTokens.oauth_token,
+                        count: 20,
+                        q: query
                     }
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
                 var params = {};
                 params.count = 20;
                 params.q = query;
-                return $http.get(request_data.url,{/*params: params,*/headers: headers});
+                return $http.get(request_data.url,{params: params,headers: headers});
             }
         }
     ];
