@@ -6,8 +6,6 @@
         function ($scope,dataSourceService) {
             $scope.d = {};
 
-            dataSourceService.logInWithTwitter();
-
             $scope.d.twitterLogIn = function(){
                 dataSourceService.logInWithTwitter();
             };
