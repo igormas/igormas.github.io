@@ -21,7 +21,10 @@
                 ]
             }];
 
-            dataSourceService.accessToken();
+            var accessProm = dataSourceService.accessToken();
+            accessProm.then(function(res){
+
+            });
         }
     ];
     angular.module('twangular').controller('mainCtrl', mainCtrl);

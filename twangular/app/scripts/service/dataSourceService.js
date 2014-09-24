@@ -41,11 +41,13 @@
                 });
             };
 
+            var accessTokens;
+            var search;
             self.accessToken = function(){
                 var absUrl = $location.absUrl();
                 var indexofQMark = absUrl.indexOf('?');
                 var searchStr = absUrl.slice(indexofQMark+1,absUrl.length-2);
-                var search = queryStringParamToobject(searchStr);
+                search = queryStringParamToobject(searchStr);
 
                 var request_data = {
                     url: 'https://api.twitter.com/oauth/access_token',
@@ -59,9 +61,28 @@
                 /*headers.oauth_verifier = search.oauth_verifier;*/
                 var prom = $http.post(request_data.url,undefined,{headers: headers});
                 return prom.then(function(res){
-                    return queryStringParamToobject(res.data);
+                    accessTokens = queryStringParamToobject(res.data);
+                    return accessTokens;
+                },
+                function(){
+                    $location.path('/login');
                 });
             };
+
+            self.searchForTweets = function(query){
+                var request_data = {
+                    url: 'https://api.twitter.com/1.1/search/tweets.json',
+                    method: 'POST',
+                    data: {
+                        oauth_token: accessTokens.oauth_token
+                    }
+                };
+                var headers = oauth.toHeader(oauth.authorize(request_data));
+                var params = {};
+                params.count = 20;
+                params.q = query;
+                return $http.get(request_data.url,{params: params,headers: headers});
+            }
         }
     ];
     angular.module('twangular').service('dataSourceService', dataSourceService);
