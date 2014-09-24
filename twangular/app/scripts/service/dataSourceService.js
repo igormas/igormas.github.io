@@ -27,7 +27,7 @@
                     url: 'https://api.twitter.com/oauth/request_token',
                     method: 'POST',
                     data: {
-                        oauth_callback: "http://igormas.github.io/twangular/app/index.html"
+                        oauth_callback: "http://igormas.github.io/twangular/app/index.html#/"
                     }
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
