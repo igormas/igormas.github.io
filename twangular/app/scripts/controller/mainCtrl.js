@@ -28,6 +28,7 @@
             accessProm.then(function(accessTokens){
                 localStorageService.setTwitterId(accessTokens.user_id);
                 $scope.d.historyResults = results = localStorageService.getHistory();
+                $scope.d.userName = accessTokens.screen_name;
             });
 
             $scope.$on('new result',function(evt,result){
