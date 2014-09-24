@@ -23,8 +23,6 @@
                 window.location.assign("https://api.twitter.com/oauth/authenticate?oauth_token=" + resObject.oauth_token);
             }
             self.logInWithTwitter = function(){
-                var url = 'https://api.twitter.com/oauth/request_token';
-
                 var request_data = {
                     url: 'https://api.twitter.com/oauth/request_token',
                     method: 'POST',
@@ -33,7 +31,7 @@
                     }
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
-                var prom = $http.post(url,undefined,{headers: headers});
+                var prom = $http.post(request_data.url,undefined,{headers: headers});
                 prom.then(function(res){
                     redirectToTwitterLogin(res);
                 });
@@ -42,7 +40,7 @@
             self.accessToken = function(){
                 var search = $location.search();
                 var request_data = {
-                    url: 'https://api.twitter.com/oauth/request_token',
+                    url: 'https://api.twitter.com/oauth/access_token',
                     method: 'POST',
                     data: {
                         oauth_token: search.oauth_token
@@ -50,7 +48,7 @@
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
                 headers.oauth_verifier = search.oauth_verifier;
-                var prom = $http.post(url,undefined,{headers: headers});
+                var prom = $http.post(request_data.url,undefined,{headers: headers});
                 prom.then(function(res){
 
                 });
