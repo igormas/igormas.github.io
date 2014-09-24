@@ -74,7 +74,7 @@
                     url: 'https://api.twitter.com/1.1/search/tweets.json',
                     method: 'GET',
                     data: {
-                        oauth_token: '2822146021-ogmraYNgE8s6peUZ98jEhlZj6zSZbuI3UeqYzqU'
+                        oauth_token: accessTokens.oauth_token
                     }
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
