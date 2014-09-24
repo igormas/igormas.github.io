@@ -11,15 +11,19 @@
                     secret: 'ivAkxlSk25cE6ZXJikBPHFKXnD1CJKttUjMMRv7iKjmH9RdbB0'
                 }
             });
+            function queryStringParamToobject(str){
+                var strArr = str.split('&');
+                var queryObj = {};
+                for(var i in strArr){
+                    var item = strArr[i];
+                    item = item.split('=');
+                    queryObj[item[0]] = item[1];
+                }
+                return queryObj;
+            }
 
             function redirectToTwitterLogin(res){
-                var resArr = res.data.split('&');
-                var resObject = {};
-                for(var i in resArr){
-                    var item = resArr[i];
-                    item = item.split('=');
-                    resObject[item[0]] = item[1];
-                }
+                var resObject = queryStringParamToobject(res.data);
                 window.location.assign("https://api.twitter.com/oauth/authenticate?oauth_token=" + resObject.oauth_token);
             }
             self.logInWithTwitter = function(){
@@ -41,26 +45,21 @@
                 var absUrl = $location.absUrl();
                 var indexofQMark = absUrl.indexOf('?');
                 var searchStr = absUrl.slice(indexofQMark+1,absUrl.length-2);
-                var searchArr = searchStr.split('&');
-                var search = {};
-                for(var i in searchArr){
-                    var item = searchArr[i];
-                    var itemArr = item.split('=');
-                    search[itemArr[0]] = item[1];
-                }
+                var search = queryStringParamToobject(searchStr);
 
                 var request_data = {
                     url: 'https://api.twitter.com/oauth/access_token',
                     method: 'POST',
                     data: {
-                        oauth_token: search.oauth_token
+                        oauth_token: search.oauth_token,
+                        oauth_verifier: search.oauth_verifier
                     }
                 };
                 var headers = oauth.toHeader(oauth.authorize(request_data));
-                headers.oauth_verifier = search.oauth_verifier;
+                /*headers.oauth_verifier = search.oauth_verifier;*/
                 var prom = $http.post(request_data.url,undefined,{headers: headers});
-                prom.then(function(res){
-
+                return prom.then(function(res){
+                    return queryStringParamToobject(res.data);
                 });
             };
         }
