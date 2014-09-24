@@ -1,9 +1,9 @@
-(function (angular) {
+(function (angular,_) {
     'use strict';
 
     var dataSourceService = [
-        '$http','$location',
-        function ($http,$location) {
+        '$http','$location','localStorageService',
+        function ($http,$location,localStorageService) {
             var self = this;
             var oauth = OAuth({
                 consumer: {
@@ -71,24 +71,34 @@
 
             self.searchForTweets = function(query){
                 var request_data = {
-                    url: 'https://api.twitter.com/1.1/search/tweets.json',
+                    url: 'https://api.twitter.com/1.1/search/tweets.json?q=' + query + '&count=20',
                     method: 'GET',
-                    data: {
-                        oauth_token: accessTokens.oauth_token,
-                        count: 20,
-                        q: query
-                    }
+                    data: {}
                 };
-                var headers = oauth.toHeader(oauth.authorize(request_data));
-                var params = {};
-                params.count = 20;
-                params.q = query;
-                return $http.get(request_data.url,{params: params,headers: headers});
+
+                var token = {
+                    public: accessTokens.oauth_token,
+                    secret: accessTokens.oauth_token_secret
+                };
+
+                var headers = oauth.toHeader(oauth.authorize(request_data,token));
+                var prom = $http.get(request_data.url,{headers: headers});
+                return prom.then(function(res){
+                    var result = {
+                        q: query,
+                        results: res.data.statuses.map(function(item){
+                            return item.text;
+                        })
+                    };
+                    result.results = _.uniq(result.results);
+                    localStorageService.addResult(result);
+                    return result;
+                });
             }
         }
     ];
     angular.module('twangular').service('dataSourceService', dataSourceService);
-})(angular);
+})(angular,_);
 
 //my implemention
 /*            function myImp(){

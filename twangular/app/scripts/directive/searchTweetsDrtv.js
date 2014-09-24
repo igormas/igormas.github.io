@@ -13,7 +13,11 @@
                     scope.d = {};
 
                     scope.d.searchForTweets = function(){
-                        dataSourceService.searchForTweets(scope.d.searchVal);
+                        var prom = dataSourceService.searchForTweets(scope.d.searchVal);
+                        prom.then(function(res){
+                            scope.result = res;
+                            scope.$emit('new result',res);
+                        });
                     };
 
                     var $input = element.find('input');
