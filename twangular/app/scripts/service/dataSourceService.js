@@ -71,7 +71,7 @@
 
             self.searchForTweets = function(query){
                 var request_data = {
-                    url: 'https://api.twitter.com/1.1/search/tweets.json',
+                    url: 'https://api.twitter.com/1.1/search/tweets.json?count=20&q=trtr',
                     method: 'GET',
                     data: {
                         oauth_token: accessTokens.oauth_token
@@ -81,7 +81,7 @@
                 var params = {};
                 params.count = 20;
                 params.q = query;
-                return $http.get(request_data.url,{params: params,headers: headers});
+                return $http.get(request_data.url,{/*params: params,*/headers: headers});
             }
         }
     ];
