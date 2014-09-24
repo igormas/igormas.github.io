@@ -8,10 +8,11 @@
 
             self.setTwitterId = function(id){
                 self.storageId = 'twitter' + id;
+                self.results = self.getHistory();
             };
 
             self.addResult = function(result){
-                self.results.push(result);
+                self.results.unshift(result);
                 if(self.results.length > 5){
                     self.results.pop();
                 }
