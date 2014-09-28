@@ -1,12 +1,42 @@
-[search-tweets-drtv] .btn-wrapper {
+html, body {
+  height: 100%; }
+
+body {
+  background: #EBEBEB; }
+
+.content .user-title {
+  margin-bottom: 20px;
+  margin-top: 5px;
+  text-align: right; }
+.content [search-tweets-drtv] .btn-wrapper {
   text-align: left; }
-[search-tweets-drtv] button {
+.content [search-tweets-drtv] button {
   margin-left: 15px; }
+.content [search-tweets-drtv] .results-title {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+.content [history-results-drtv] {
+  margin-top: 50px; }
+  .content [history-results-drtv] .title {
+    margin-bottom: 5px; }
+  .content [history-results-drtv] a {
+    cursor: pointer; }
 
-[history-results-drtv] .fa {
-  margin-left: 5px;
-  border: 1px solid #000000;
-  cursor: pointer; }
-
-.twitter-btn .fa-twitter {
-  color: #55ACEE; }
+.login {
+  margin-top: 100px;
+  text-align: center;
+  font-family: "Roboto Condensed"; }
+  .login .welcome-title {
+    font-size: 40px;
+    margin-bottom: 10px; }
+  .login .twitter-btn {
+    background: #55ACEE;
+    color: #ffffff;
+    height: 45px;
+    width: 220px;
+    text-align: left;
+    font-size: 20px;
+    font-family: "Roboto Condensed"; }
+    .login .twitter-btn .fa-twitter {
+      color: #ffffff;
+      margin-right: 17px; }

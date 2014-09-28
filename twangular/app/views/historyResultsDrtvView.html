@@ -1,13 +1,13 @@
-<div>History</div>
-<div ng-repeat="result in results">
-    <span>{{result.q}}</span>
-    <i class="fa"
-       ng-class="d.isOpen ? 'fa-minus' : 'fa-plus'"
-       ng-click="d.isOpen = !d.isOpen">
-    </i>
-    <ul class="list-group" ng-if="d.isOpen">
-        <li class="list-group-item"
-            ng-repeat="searchResult in result.results">{{searchResult}}
-        </li>
-    </ul>
+<div class="col-xs-12">
+    <div class="title">Search History</div>
+</div>
+<div class="col-xs-12">
+    <div ng-repeat="result in results">
+        <a ng-click="d.isOpen = !d.isOpen">{{result.q}}</a>
+        <ul class="list-group" ng-if="d.isOpen">
+            <li class="list-group-item"
+                ng-repeat="searchResult in result.results">{{searchResult}}
+            </li>
+        </ul>
+    </div>
 </div>

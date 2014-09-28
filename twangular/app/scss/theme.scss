@@ -1,29 +1,76 @@
 @import "imports/variable";
 
+html,body{
+  height: 100%;
+}
+
+body{
+  background: $greyBG1;;
+}
+
 .content{
+  .user-title{
+    margin:{
+      bottom: 20px;
+      top: 5px;
+    }
+    text-align: right;
+  }
 
+  [search-tweets-drtv]{
+    .btn-wrapper{
+      text-align: left;
+    }
+
+    button{
+      margin-left: 15px;
+    }
+
+    .results-title{
+      margin: {
+        top: 10px;
+        bottom: 10px;
+      };
+    }
+  }
+
+  [history-results-drtv]{
+    margin-top: 50px;
+
+    .title{
+      margin: {
+        bottom: 5px;
+      };
+    }
+
+    a{
+      cursor: pointer;
+    }
+  }
 }
 
-[search-tweets-drtv]{
-  .btn-wrapper{
+.login{
+  margin-top: 100px;
+  text-align: center;
+  font-family: "Roboto Condensed";
+
+  .welcome-title{
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .twitter-btn{
+    background: $paleBlueFC1;
+    color: $whiteFC1;
+    height: 45px;
+    width: 220px;
     text-align: left;
-  }
+    font-size: 20px;
+    font-family: "Roboto Condensed";
 
-  button{
-    margin-left: 15px;
-  }
-}
-
-[history-results-drtv]{
-  .fa{
-    margin-left: 5px;
-    border: 1px solid #000000;
-    cursor: pointer;
-  }
-}
-
-.twitter-btn{
-  .fa-twitter{
-    color: $paleBlueFC1;
+    .fa-twitter{
+      color: $whiteFC1;
+      margin-right: 17px;
+    }
   }
 }
