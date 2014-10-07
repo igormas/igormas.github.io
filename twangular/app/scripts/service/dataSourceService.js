@@ -65,7 +65,7 @@
                     return accessTokens;
                 },
                 function(){
-                    $location.path('/login');
+                    //$location.path('/login');
                 });
             };
 
